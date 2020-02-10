@@ -30,7 +30,7 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new AppBar(title: Text("Actividades del ususario"),),
+      appBar: new AppBar(title: Text("Actividades del usuario"),),
       backgroundColor: Colors.white,
       body: Container(
         child: Column(
