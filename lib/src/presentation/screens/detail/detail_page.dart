@@ -190,7 +190,7 @@ class _DetailPageState extends State<DetailPage> {
   Widget _item(BuildContext context, TaskModel task){
     return ListTile(
       leading: task.status == 0 ? Icon(Icons.panorama_fish_eye) : Icon(Icons.check_circle_outline, color: Colors.green,),
-      title: Text("${task.description} ${task.status} ${task.id} ${task.userID}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0)),
+      title: Text("${task.description}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0)),
       onLongPress: () async {
        _taskBloc.dispatch(UpdateTaskEvent(task));
       },

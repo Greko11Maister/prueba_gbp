@@ -13,20 +13,26 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: new AppBar(title: Text("Prueba GBP"),),
-      body: BlocBuilder<UsersBloc, UsersState>(
-        builder: (context, state){
-          if(state is LoadedUsersState){
-            return ListView.separated(
-                itemBuilder: (context, i) => _item(context, state.users[i]),
-                separatorBuilder: (BuildContext context, int index){
-                  return Container(
-                    color: Colors.blueAccent.withOpacity(0.15),
-                    height: 8.0,
-                  );
-                },
-                itemCount: state.users.length);
-          }
-          return Container(child: Text("Sin resultados"),);
+      body: RefreshIndicator(
+        child: BlocBuilder<UsersBloc, UsersState>(
+          builder: (context, state){
+            if(state is LoadedUsersState){
+              return ListView.separated(
+                  itemBuilder: (context, i) => _item(context, state.users[i]),
+                  separatorBuilder: (BuildContext context, int index){
+                    return Container(
+                      color: Colors.blueAccent.withOpacity(0.15),
+                      height: 8.0,
+                    );
+                  },
+                  itemCount: state.users.length);
+            }
+            return Container(child: Text("Sin resultados"),);
+          },
+        ),
+        onRefresh: () async {
+          await new Future.delayed(new Duration(seconds: 3));
+          BlocProvider.of<UsersBloc>(context).dispatch(LoadUsersEvent());
         },
       ),
     );
