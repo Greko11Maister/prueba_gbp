@@ -162,13 +162,13 @@ class _DetailPageState extends State<DetailPage> {
            var  taskDone = state.tasks.where((item) => item.status == 1).toList();
             return Column(
               children: <Widget>[
-                Expanded(
+               taskPending.length > 0 ? Expanded(
                   child: activityPending(taskPending),
-                )
+                ): Container()
                 ,
-                Expanded(
+                taskDone.length >  0 ? Expanded(
                   child:  activityDone(taskDone),
-                )
+                ) : Container()
 
               ],
             );
